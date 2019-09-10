@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 juil. 2019 12:46:05 by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="entities.Commandes" table="commandes" catalog="g_vente" optimistic-lock="version">
+        <id name="codeCmd" type="java.lang.Integer">
+            <column name="codeCmd" />
+            <generator class="identity" />
+        </id>
+        <property name="client" type="string">
+            <column name="client" length="20" not-null="true" />
+        </property>
+        <property name="codeArt" type="int">
+            <column name="codeArt" not-null="true" />
+        </property>
+        <property name="qteCmd" type="int">
+            <column name="qteCmd" not-null="true" />
+        </property>
+        <property name="dateCmd" type="date">
+            <column name="dateCmd" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

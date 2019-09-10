@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+	
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="navstyle.css" />
+	
+        <title>Ajouter une nouvelle commande</title>
+	<style>
+		.error{color:red};
+	</style>
+	<script>
+	$(document).ready(function() {
+		$( ".datepicker" ).datepicker({
+			 dateFormat: 'yy-mm-dd'
+		});
+	});
+	</script>
+    </h:head>
+	<body> 	
+	<h:form>
+	    <div id="mySidenav">
+		<a id="contact"> <h:commandButton value="Log out" action="#{userController.logout()}" styleClass="btnlog"></h:commandButton></a>
+		</div>
+	</h:form>
+    	<div class="container">
+    		<div class="row head">
+			<img src="resources/images/index_2.png" width="250" height="72"></img>
+				<ul class="nav navbar-nav">
+        		<li><h:link value="Articles" outcome="indexart"/><br/></li>
+				<li><h:link value="Commandes" outcome="indexcmd"/><br/></li>
+				<li><h:link value="Utilisateurs" outcome="indexuser"/><br/></li>
+				</ul>
+			</div>
+	        <div class="row">
+	        	
+            	<div class="col-xs-12">
+	            	<div class="panel panel-default">
+				    	<div class="panel-heading">
+		               		<h3 class="text-center"><h:outputText value="Ajouter une nouvelle commande" styleClass="panel-title"/></h3>
+		           		</div>
+			       	</div>
+			       	<ul class="pager">
+				    <li class="next"><h:link value="Previous" outcome="indexcmd"/><br/></li>
+					 </ul>
+            		<div class="panel-body">
+	            		<h:form styleClass="form-horizontal">
+	            			<div class="form-group">
+			               		<h:outputLabel value="Nom d'article " styleClass="control-label col-sm-4" />
+			                    <div class="col-sm-6">
+			                        <h:selectOneMenu value="#{commandeController.commande.codeArt}" styleClass="form-control">
+		                				<f:selectItems value="#{commandeController.getArts()}" var="art" itemValue="${art.codeArt}" itemLabel="${art.nomArt}"/>
+		                			</h:selectOneMenu>
+		                   		</div>
+	                    	</div>
+		                    <div class="form-group">
+		                        <h:outputLabel value="Client " styleClass="control-label col-sm-4" />
+		                        	<div class="col-sm-6">
+		                            <h:inputText value="#{commandeController.commande.client}" id="client" required="true" requiredMessage="Le nom du client est obligatoire" styleClass="form-control"/>
+		                        	<h:message for="client" styleClass="error"/>
+	                        	</div>
+		                    </div>
+		                    <div class="form-group">
+		                        <h:outputLabel value="Quantite " styleClass="control-label col-sm-4"/>
+	                        	<div class="col-sm-6">
+		                            <h:inputText value="#{commandeController.commande.qteCmd}" id="qte" validatorMessage="La quantite doit être compris entre 1 et 10000." required="true" requiredMessage="Le quantite est obligatoire" styleClass="form-control">
+		                        	<f:validateLongRange minimum="1" maximum="10000"/>
+		                        	</h:inputText>
+		                        	<h:message for="qte" styleClass="error"/>
+	                        	</div>
+		                    </div>
+			                <div class="form-group">
+			                    <h:outputLabel value="Date commande" styleClass="control-label col-sm-4" />
+		                        <div class="col-sm-6">
+		                       		<h:inputText value="#{commandeController.commande.dateCmd}" id="date" converterMessage="format du date yyyy-mm-dd" required="true" requiredMessage="La date est obligatoire" styleClass="form-control datepicker">
+		                  	  		<f:convertDateTime pattern="yyyy-MM-dd" />
+	                        		</h:inputText>
+		                            <h:message for="date" styleClass="error"/>
+		                        </div>
+		                    </div>
+		                    <div class="form-group">
+		                        <div class="col-sm-offset-4 col-sm-6">
+									<h:commandButton value="Save" action="#{commandeController.Add()}" styleClass="btn btn-primary"/>
+		                        </div>
+	                        </div>
+	                    </h:form>
+                    </div>
+            	</div>
+            </div>
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Sofia&display=swap');
+body {
+    font-family: 'Sofia', cursive;
+}
+
+#helo {
+  background-color: #0093FF;
+  height:500px;
+  padding:5%;
+  padding-top: 100px;
+  padding-left: 100px;
+}
+
+#form-block{
+    padding: 20%;
+}
+.marg {
+	margin:15px;
+}

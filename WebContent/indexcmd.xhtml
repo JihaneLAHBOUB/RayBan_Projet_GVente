@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+	<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" />
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="navstyle.css" />
+	
+        <title>Commandes</title>
+        <script>
+        $(document).ready( function () {
+            $('.myTable').DataTable();
+        });
+        </script>
+    </h:head>
+
+    <body>
+    
+    <h:form>
+    <div id="mySidenav">
+	<a id="contact"> <h:commandButton value="Log out" action="#{userController.logout()}" styleClass="btnlog"></h:commandButton></a>
+	</div>
+	</h:form>
+	    <div class="container">
+	    	<div class="row head">
+	    	<img src="resources/images/index_2.png" width="250" height="72"></img>
+    			<ul class="nav navbar-nav">
+        		<li><h:link value="Articles" outcome="indexart" /><br/></li>
+				<li><h:link value="Commandes" outcome="indexcmd"/><br/></li>
+				<li><h:link value="Utilisateurs" outcome="indexuser"/><br/></li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="btnAjout">
+				<h:link value="Ajouter une commande" outcome="addcmd" styleClass="btn btn-info"></h:link> 	
+				</div>			   	
+			   	<h:form>
+			   		<center>
+		               <h2><h:outputText value="Tous les commandes"/></h2>
+		          	</center>
+					<h:dataTable styleClass="myTable table-striped table-hover" var="tempCmd" value="#{commandeController.getCommandes()}">
+						<h:column>
+							<!-- the column header -->
+							<f:facet name="header">Code Commande</f:facet>
+							
+							<!--  the value for each row -->
+							<h:outputText value="${tempCmd.codeCmd}"></h:outputText>
+						</h:column>
+						<h:column>
+							<!-- the column header -->
+							<f:facet name="header">Code Article</f:facet>
+							<!--  the value for each row -->
+							<h:outputText value="${tempCmd.codeArt}"></h:outputText>
+						</h:column>
+						<h:column>
+							<!-- the column header -->
+							<f:facet name="header">Date Commande</f:facet>			
+							<!--  the value for each row -->
+							<h:outputText value="${tempCmd.dateCmd}"></h:outputText>
+						</h:column>
+						<h:column>
+							<!-- the column header -->
+							<f:facet name="header">Quantite Commande</f:facet>
+							<!--  the value for each row -->
+							<h:outputText value="${tempCmd.qteCmd}"></h:outputText>
+						</h:column>
+						<h:column>
+							<!-- the column header -->
+							<f:facet name="header">Client</f:facet>
+							<!--  the value for each row -->
+							<h:outputText value="${tempCmd.client}"></h:outputText>
+						</h:column>
+						<h:column>
+							<!-- the column header -->
+							<f:facet name="header">Options</f:facet>
+							<div class="btn-group">
+							<h:commandLink value="Update" action="#{commandeController.update(tempCmd)}" styleClass="btn btn-primary"></h:commandLink>
+							</div>
+							<div class="btn-group">
+							<h:commandLink value="Delete" action="#{commandeController.delete(tempCmd)}" onclick="return confirm('Are you sure ?')" styleClass="btn btn-danger"></h:commandLink>
+							</div>
+							<div class="btn-group">
+							<h:commandLink value="Facture" action="#{commandeController.showReport(tempCmd)}" styleClass="btn btn-primary"></h:commandLink>
+							</div>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			</div>
+		</div>
+    </body>
+</html>

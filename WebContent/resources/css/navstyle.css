@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css?family=Sofia&display=swap');
+body {
+    font-family:cursive;
+}
+
+.nav {
+	padding:0px;
+	float: right;
+}
+.nav li {
+  font-size: 15px;
+  padding: 0px;
+}
+.sidenav {
+  height: 100%;
+}
+.sidenav.sidebar {
+  padding-top: 150px;
+  padding-left: 40px;
+}
+/* Style the sidebar - fixed full height */
+.mysidebar {
+  height: 100%;
+  background-color: #0093FF;
+  padding-top: 15px;
+  padding-bottom: 150px;
+}
+li {
+  padding: 6px 8px 6px 10px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #f1f1f1;
+}
+.head{
+	margin-right: -15px;
+	margin-left: -15px;
+	background-color: rgb(237,29,36);
+	margin-bottom: 20px;
+}
+.navbar-nav > li > a{
+	color:black;
+}
+.btnAjout{
+	float: right;
+}
+#mySidenav a {
+  position: absolute;
+  left: -80px;
+  transition: 0.3s;
+  padding: 15px;
+  width: 100px;
+  text-decoration: none;
+  font-size: 15px;
+  color: white;
+  border-radius: 0 5px 5px 0;
+}
+
+#mySidenav a:hover {
+  left: 0;
+}
+#contact {
+  top: 80px;
+  background-color: #555;
+}
+.btnlog{
+	background-color: #555;
+	border: none;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+}
+
+li {
+  float: left;
+  margin-top: 15px;
+  font-family:'Sofia',cursive;
+}
+
+li {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+.next{
+	float: right;
+}

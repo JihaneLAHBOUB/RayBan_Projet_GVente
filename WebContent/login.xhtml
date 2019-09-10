@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+    <h:outputStylesheet library="css" name="loginstyle.css" />
+    <h:outputStylesheet library="css" name="bootstrap.min.css" />  
+        <title>Page Login</title>
+        <style>
+		.error{color:red}
+		</style>
+    </h:head>
+	<h:body>
+	    <div class="container">
+	    	<div class="row">
+		        <nav class="navbar navbar-default">
+		            <h3 class="text-center">RayBan</h3>
+		        </nav>
+		   	</div>
+	        <div class="row">
+	            <div class="col-xs-6">
+	                <img src="resources/images/graphic.svg" alt=""/>
+	            </div>
+	            <div class="col-xs-6" id="helo">
+                    <h2 class="text-center">Welcome back.</h2>
+                	<h:outputText value="#{userController.msg}" styleClass="error"/>
+					<h:form>
+						<div class="form-group">
+							<h:outputLabel value="Username" styleClass="control-label col-sm-4"/>
+							<div class="col-sm-10">
+								<h:inputText value="#{userController.user.login}" id="marg" styleClass="form-control col-sm-6"></h:inputText>
+							</div>
+						</div>
+						<div class="form-group">
+							<h:outputLabel value="Password" styleClass="control-label col-sm-4"/>
+							<div class="col-sm-10">
+								<h:inputSecret value="#{userController.user.pass}" styleClass="form-control col-sm-4"></h:inputSecret>
+							</div>
+						</div>
+						<div class="form-group">
+							<h:commandButton value="Login" action="#{userController.login(user)}" styleClass="btn btn-primary marg"></h:commandButton>
+						</div>
+					</h:form>
+		      	</div>
+			</div>
+		</div>
+	</h:body>
+</html>

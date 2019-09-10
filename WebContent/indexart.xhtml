@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+	<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" />
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+	
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="navstyle.css" />
+	  
+        <title>Articles</title>
+        <script>
+        $(document).ready( function () {
+            $('.myTable').DataTable();
+        });
+        </script>  
+    </h:head>
+    
+    <h:body>
+    
+    <h:form>
+    <div id="mySidenav">
+	<a id="contact"> <h:commandButton value="Log out" action="#{userController.logout()}" styleClass="btnlog"></h:commandButton></a>
+	</div>
+	</h:form>
+	   <div class="container">
+	   		
+			<div class="row head">
+			<img src="resources/images/index_2.png" width="250" height="72"></img>
+    			<ul class="nav navbar-nav">
+        		<li><h:link value="Articles" outcome="indexart"/><br/></li>
+				<li><h:link value="Commandes" outcome="indexcmd"/><br/></li>
+				<li><h:link value="Utilisateurs" outcome="indexuser"/><br/></li>
+				</ul>
+			</div>
+				<div class="row">
+				<div class="btnAjout">
+					<h:link value = "Ajouter un article" outcome="addart" class="btn btn-info "></h:link>
+				</div>
+	   			<h:form>
+		  			<center>
+		               <h2><h:outputText value="Tous les articles"/></h2>
+		           	</center>
+				<h:dataTable styleClass="myTable table-striped table-hover" var="tempArticles" value="#{articleController.getArticles()}">
+					<h:column>
+						<!-- the column header -->
+						<f:facet name="header">Code Article</f:facet>
+						<!--  the value for each row -->
+						<h:outputText value="${tempArticles.codeArt}"></h:outputText>
+					</h:column>
+					<h:column>
+						<!-- the column header -->
+						<f:facet name="header">Nom Article</f:facet>
+						<!--  the value for each row -->
+						<h:outputText value="${tempArticles.nomArt}"></h:outputText>
+					</h:column>
+					<h:column>
+						<!-- the column header -->
+						<f:facet name="header">Prix Article</f:facet>
+						<!--  the value for each row -->
+						<h:outputText value="${tempArticles.prixArt}"></h:outputText>
+					</h:column>
+					<h:column>
+						<!-- the column header -->
+						<f:facet name="header">Description Article</f:facet>
+						<!--  the value for each row -->
+						<h:outputText value="${tempArticles.descArt}"></h:outputText>
+					</h:column>
+					<h:column>
+						<!-- the column header -->
+						<f:facet name="header">Options</f:facet>
+						<div class="btn-group">
+						<h:commandLink value="Update" action="#{articleController.update(tempArticles)}" styleClass="btn btn-primary"></h:commandLink>
+						</div>
+						<div class="btn-group">
+						<h:commandLink value="Delete" action="#{articleController.delete(tempArticles)}" onclick="return confirm('Are you sure ?')" styleClass="btn btn-danger"></h:commandLink>
+						</div>
+					</h:column>
+				</h:dataTable>
+				</h:form>
+			</div>
+		</div>
+    </h:body>
+</html>
